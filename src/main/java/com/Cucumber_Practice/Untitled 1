@@ -1,0 +1,750 @@
+Cucumber: 
+
+	--> It is an Automation testing Framework
+	--> It is BDD Approach Framework 
+				BDD --> Behavioral Driven Development
+	--> It is an inspired from TestNG
+	--> It will executed by JUnit 
+	
+Download Cucumber Plug-ins:
+
+		Help --> Eclipse Marketplace --> Search Cucumber in Find bar --> And click install
+		button to install it.
+	
+Dependencies: 
+	
+	1. Cucumber JUnit	1.2.5
+	2. Cucumber Java 	1.2.5
+	3. Cucumber Core	1.2.5
+	
+			Search info.cukes in mvnrepository.com
+			
+Configure JUnit:
+	
+	Right click the Project --> Build Path --> Configure Build Path --> Move to libraries 
+	Section --> Add Library --> Select JUnit --> Select JUnit Version --> Click Finish
+	--> Click Apply and Close
+	
+	
+JUnit : 
+
+	--> It is a tool, Which is used for unit testing
+	--> Test method should be mentioned with @Test Annotation
+	--> Annotations of JUnit:
+	
+				@BeforClass
+						@Before
+								@Test
+						@After
+				@AfterClass
+				
+		1. @Test:
+		
+				--> It is used to mention method is Test Method
+				
+		2. @Before
+		
+				--> It will be executed before the @Test annotation
+				--> It will be executed based on how many @Test are there
+				
+		3. @After
+		
+				--> It will be executed After the @Test annotation
+				--> It will be executed based on how many @Test are there
+				
+		4. BeforeClass
+				
+				--> It will be executed before the @Before Annotation
+				--> It will executed only one time
+				--> Method should be static
+				
+		5. AfterClass
+				
+				--> It will be executed After the @After Annotation
+				--> It will executed only one time
+				--> Method should be static
+	
+	
+Assertion:
+
+	Validation		: Hard Assert
+	
+	Verification	: Soft Assert
+	
+		--> If Assert meet condition and assert is pass test is passed
+		--> Otherwise test is failed
+	
+Methods of Assertion:
+	
+	1. assertEquals(expected, actual);
+			--> If actual and expected values are equal test is passed
+			
+	2. assertNotEqulas(expected, actual);
+			--> If actual and expected values are Not equal test is passed
+	
+	3. assertTrue(condition);
+			--> If given condition return true test is passed
+			
+	4. assertFalse(condition);
+			--> If given condition return false test is passed
+			
+	5. assertNull(Object);
+			--> If Object having null value test is passed
+			
+	6. assertNotNull(Object);
+			--> If Object having value test is passed
+		
+	
+JUnit Assertion: 
+
+		--> JUnit Support Only Hard Assert
+		--> Ways to take Assert to confirm web page navigate to next page: 
+		
+					1. Title 
+					2. Url
+					3. Element
+					
+		--> Ways to take Assert Particular Element:
+		
+					1. isDisplayed
+					2. isEnabled
+					
+Three things are important:
+
+		1. Feature file
+				--> It is used to write a test cases
+				
+		2. Step Definition
+				--> It is used to execute the test cases
+			
+		3. Runner
+				--> It is used to perform all test
+		
+Cucumber Structure: 
+
+		src/main/java
+				
+				- BaseClass
+				- Pom
+				- PageObjectManager
+				- PropertyFile
+				- Helper
+				
+		src/test/java
+		
+				- Feature File
+				- Step Definition
+				- Runner
+				
+Feature File:
+
+		--> It is used to write a test cases
+		--> Extension :  .feature
+		--> We can use Simple English Format Language ( Gherkin ) to write a test cases.
+		--> Keywords:
+		
+				1. Feature:
+						Overall Functionality
+					
+				2. Scenario:
+						Particular Functionality
+				
+				3. Given
+						Pre Condition 
+				
+				4. When
+						First Action of the each scenario
+				
+				5. And
+						Remaining Action of the Scenario
+				
+				6. Then
+						Positive Validation
+				
+				7. But
+						Negative Validation
+		
+How to create Feature File: 
+	
+		Right click the Package --> New --> File --> Give any name using .feature extension
+		--> Click Finish			
+
+	
+In Runner Class: 
+
+	1. Create 2 Methods as Static 
+		
+			One is for Initialize the browser with mention @BeforeClass Annotation
+			One is for Close the browser with mention @AfterClass Annotation
+			
+	2. Using @RunWith(Cucumber.class) to initialize the JUnit to run the Cucumber file 
+	
+	3. Using @CucumberOptions to mention where out Feature file and Step definition are
+	   there.
+	   
+	   		features --> It is used to tell path of the Feature file 
+	   		glue     --> It is used to tell the package of the Step Definition
+	   		
+	 
+Property File: 
+
+	--> It is used to store a test data
+	--> Data are stored as key and value pair
+	--> Key and value is String data type, No need to mention ("") Double quotes
+	--> Created src/main/java
+	--> Extension: .properties
+	
+How to take Data From Property File:
+
+	1. Convert Properties into File Format, Using File Class
+			File refname = new File("Path of the property File");	
+		
+	2. Using FileInputStream class to take the file 
+			FileInputStream refname = new FileInputStream(File refname);
+			
+	4. Create Object For Properties class
+			Properties refname = new Properties();
+			
+	5. Load FileInputStream Inside the Properties Class
+			load();
+			
+	
+Cucumber HOOKS: 
+
+	1. Before Hook
+			--> It will be executed before the scenario
+			--> Mentioned with @Before Annotation
+			
+	2. After Hook
+			--> It will be executed after the scenario
+			--> Mentioned with @After Annotation
+	
+	
+Cucumber Options:
+
+	1. features
+			--> It is used to mention the feature file path
+			
+	2. glue
+			--> It is used to mention the package of the step definition
+			
+	3. monoChrome
+			--> It is used to give the readable format 
+			--> Data are passed as boolean data type
+			--> If it will true, it will give readable format
+			--> Default value is false
+			
+	4. dryRun
+			--> It will be executed feature file and step definition without actual 
+				running
+			--> Data are passed as boolean data type
+			--> It will true
+			--> Default value is false 
+			
+	5. strict
+		
+			--> It is used to throw an Exception  when we are not added snippets
+			--> Data are passed as boolean data type
+			--> If It will true it will throw an Exception
+			--> Default value is false 
+			
+	6. tags
+			--> It will be executed particular tags
+			--> If we need to execute give tags = "@tagname"	
+			--> If we need to neglate give tags = "~@tagname"
+			
+	7. plugin
+			--> It is used to generate report
+			--> Data are passed as String Array
+			--> String are consist of Key and Value pair	
+			--> Types of Report:
+					1. Html Report
+						
+							{"html : FolderName"}
+						
+					2. Pretty
+							--> It is a Console Report
+							{"pretty"}
+							
+					3. Json
+						
+							{"json: Foldername/Filename.json"}
+					
+					4. Extent Report
+					
+						It is a third party report
+						Dependencies:
+						
+							1. Extent Reports 	3.1.2  --> Aventstack
+							2. Extents Report	3.0.2  --> Vimal Selvam
+							
+					{"com.cucumber.listener.ExtentCucumberFormatter:Foldername/Filename.html"}
+							
+******************************************************************
+
+Data Driven: 
+
+	--> It is a Framework 
+	--> It is used to access the External File (Excel)
+	--> Dependency:
+			Apache POI 
+				--> It is an API, that collect Java libraries to access the Excel File
+				
+				Apache POI 					4.1.2
+				Apache POI ooxml 			4.1.2
+				Apapche POI ooxml schemas	4.1.2
+				
+Workbook:
+
+	--> A workbook represents a Microsoft Excel File, It contains Many Sheets
+	--> It is used to Creating and Maintaining the Sheets
+	--> It is an Interface
+	--> Types of Workbook (Workbook implements classes):
+		
+			1. HSSFWorkbook
+					--> It is a Class
+					--> It is used to Read/Write in .xls format
+					--> Microsoft Excel Version 1997 - 2003 
+					--> HSSF - Horrible Spread Sheet Format
+					--> Syntax:
+							Workbook refname = new HSSFWorkbook();
+			
+			2. XSSFWorkbook
+					--> It is a Class
+					--> It is used tp Read/Write in .xls and .xlsx format
+					--> Microsoft Excel Version 2007 - Latest	
+					--> XSSF - Xml Spread Sheet Format
+					--> Syntax:
+							Workbook refname = new XSSFWorkbook();		
+	--> Methods: 
+			
+			1. createSheet(String name)
+					--> It is used to create a new spread sheet
+					
+			2. getSheetAt(int index)
+					--> It is used to get the Sheet by index
+					
+			3. getSheet(String name)
+					--> It is used to get the Sheet by Sheet name
+					
+			4. write()
+					--> It is used to write all data inside the sheet
+					
+			5. close()
+					--> It is used to close the Workbook
+					
+Sheet: 
+
+	--> It contains number of Rows and Columns
+	--> It is an Interface
+	--> Methods:
+	
+			1. createRow(int index)
+					--> To create a New Row to passing the index
+					
+			2. getRow(int index)
+					--> It is used to get the row using index
+					
+			3. getPhysicalNumberofRows()
+					--> It is used to identify how many rows having data 
+					
+Row: 
+
+	--> It contains number of Cells
+	--> It is an Interface
+	--> Methods:
+	
+			1. createCell(int index)
+					--> To create a new Cell to passing the index
+					
+			2. getCell(int index)
+					--> It is used to get the Cell using index
+					
+			3. getPhysicalNumberofCells()
+					--> It is used to identify how many cells having data 
+					
+Cell:
+
+	--> It represent rows and Columns
+	--> Inside the cell we stored a data 
+	--> Data can stored as String and Numeric	
+	--> It is an Interface
+	--> Methods:
+			1. getCellType()
+					--> It is used to identify the cell data type
+					
+			2. getStringCellValue()
+					--> It is used to get the String data type cell data 
+					
+			3. getNumericCellValue()
+					--> It is used to get the Numeric data type cell data 
+					
+			4. setCellValue()
+					--> It is used to set the data inside the cell 
+					
+					
+Read Data From Excel File:
+
+	1. To convert into File Format using File Class
+			File refname = new File("Path of the excel file");		
+	
+	2. Create object FileInputStream class
+			FileInputStream refname = new FileInputStream(File refname);
+			
+	3. To open Workbook
+
+			for .xls 
+				Workbook refname = new HSSFWorkbook(FileInputStream refname);
+				
+			for .xlsx 
+				Workbook refname = new XSSFWorkbook(FileInputStream refname);
+				
+	4. Select sheet using Workbook methods
+			1. getSheet(String name)
+			2. getSheetAt(int index)
+			
+	5. Select row using Sheet method		
+			getRow(int index)
+			
+	6. Select cell using row method
+			getCell(int index)
+			
+	7. To identify the cell data type using cell method
+			getCellType()
+			
+	8. Take data from inside the cell 
+	
+			If data is String use 
+					getStringCellValue()
+					
+			If data is Numeric use
+					getNumericCellValue()
+	
+Write Data in Excel File:
+
+	1. To convert into File Format using File Class
+			File refname = new File("Path of the excel file");		
+	
+	2. Create object FileInputStream class
+			FileInputStream refname = new FileInputStream(File refname);
+			
+	3. To open Workbook
+
+			for .xls 
+				Workbook refname = new HSSFWorkbook(FileInputStream refname);
+				
+			for .xlsx 
+				Workbook refname = new XSSFWorkbook(FileInputStream refname);
+	
+	
+	4. Create a new spread sheet using Workbook method
+			createSheet(String name)
+			
+	5. Create a row using sheet methods
+			createRow(int index)
+			
+	6. Create a cell using row method
+			createCell(int index)
+			
+	7. Set the data inside the cell using Cell method
+			setCellValue()
+			
+	8. Create Object for FileOutputStream 
+			FileOutputStream refname = new FileOutputStream(File refname);
+			
+	9. Write all data using Workbook method
+			write(FileOutputStream fos)
+
+***************************************************************************
+
+TestNG:
+
+	--> It is a Java based Automation framework 
+	--> NG means Next Generation
+	--> It is a TDD framework 
+				TDD - Test Driven Development 
+	--> Inspired from JUnit and NUnit 
+	--> Advantages:
+			1. We can perform Multi-tasking (Cross browser testing)
+			2. Automatically Report Generator
+			3. We can perform Parallel Execution
+			4. It support Hard Assert and Soft Assert
+			5. It will re run failed test cases Automatically
+			
+	--> Installation:
+	
+			Help --> Eclipse Marketplace --> Search TestNG --> Click Install
+			
+	--> Configuration:
+	
+			Right clik the Project --> Build path --> Configure Build path --> Move to 
+			libraries --> Add library --> Select TestNG --> Click Finish 
+			
+	--> Test methods should be mentioned @Test Annotation
+	--> Test methods are executed ASCII order
+	--> Features:
+	
+				1. Simple Annotation
+				2. Ignore
+				3. Priority
+				4. Groups
+				5. Dependency
+				6. Invocation Count
+				7. Timeout 
+				8. Expected Exception
+				9. Parameterized
+				10. Data provider
+				11. Parallel Execution
+				12. Cross browser testing
+				13. Report 
+				14. IRetry Analyzer
+				
+				
+1. Simple Annotation: 
+
+		--> It is used to execute test cases in particular order with the help of 
+			different kind of annotation
+			
+		--> Annotations List:
+		
+				@BeforeSuite						Set Property
+						@BeforeTest						Browser Launch
+								@BeforeClass				Url Launch
+										@BeforeMethod			Login
+													@Test			Mobile, Laptop
+										@AfterMethod			Logout	
+								@AfterClass					DeleteCookies		
+						@AfterTest						Home Page
+				@AfterSuite							Close Browser
+	
+	
+
+2. Ignore:
+
+		--> It is used to skip (or) Ignore the particular test method
+		--> Two ways to ignore:
+		
+				1. Annotation Attribute ( enabled )		.java
+				2. Tag 					( exclude )		.xml
+				
+		--> We will set enabled = false to ignore the test method
+				
+			Enabled: 
+			
+				--> It is an Annotation attribute 
+				--> It is used to set method is enable or not
+				--> Data are passed as boolean data type
+				--> Default value is true 
+				--> Used in Simple annotation and @Test
+				
+			In xml FIle : 
+			
+				To ignore particular method follow the tag
+						<methods>
+							<exclude name="methodName"></exclude>
+						</methods>
+
+
+3. Priority:
+
+		--> It is used to execute the test method in particular order
+		--> Using annotation attribute priority
+				Priority: 
+					--> It is an Annotation attribute
+					--> Here we will pass values to set the priority to test method
+					--> Values set depends:
+								-ve		0 		+ve	
+					--> If priority values are same it will exeucte test methods in 
+						ASCII order
+					--> Default value of priority is 0
+					--> Used in only @Test	
+
+4. Groups:
+
+		--> It is used to group the multiple methods and executed 
+		--> Using annotation attribute groups
+				Groups:
+					--> It is an Annotation attribute 
+					--> Here we will pass values as String[] data type 
+					--> Used in Simple Annotation and @Test
+		--> We need to execute particular group we can use <groups> tag in xml file
+		--> We can use <groups> in two levels :
+					1. Suite
+					2. Test
+		--> If we want to execute particular group 
+				<groups>
+					<run>
+						<include name="Group name"></include>
+					</run>
+				</groups>
+				
+		--> If we want to ignore particular group
+				<groups>
+					<run>
+						<exclude name="Group name"></exclude>
+					</run>
+				</groups>
+					
+		--> If we give <include> and <exclude> at a same time priority goes to exclude
+					
+5. Dependency:
+
+		--> It is used to execute the method or groups in particular order 
+		--> Ways to achieve:
+				1. dependsOnMethods
+						--> It is an Annotation Attribute
+						--> Data are passed as String[] data type
+						--> It is used to execute methods in particular order
+						
+				2. dependsOnGroups		
+						--> It is annotation attribute
+						--> Data are passed as String[] data type
+						--> It is used to execute groups in particular order 		
+
+
+6. Invocation Count:
+
+		--> It is used to execute same test case multiple time 
+		--> Using invocationCount annotation attribute
+				invocationCount: 
+						--> It is an Annotation attribute
+						--> Data are passed as int data type
+						--> Default value is 1
+						--> Used in only @Test
+						
+				invocationTimeout:
+						--> It is an Annotation attribute
+						--> It is used to set the time limit of the invocation count
+						--> Data are passed as long data type (milliSeconds)
+						--> Used in only @Test
+						
+				threadPoolSize:
+						--> It is an annotation attribute
+						--> It is used to execute invocationCount as parallel
+						--> Data are passed as int data type
+						--> Used in only @Test
+						
+		--> If invocationCount is not there invocationTimeout and threadPoolSize is not
+			Working
+			
+7. Timeout: 
+
+		--> It is used to set the time limit of the test method
+		--> Using timeout annotation attribute 
+				timeout:
+					--> It is an annotation attribute
+					--> It is used to set the time limit of the test method
+					--> Data are passed as long data type [milliSeconds]
+					--> If test method take more time it will throw ThreadTimeoutException
+					
+8. ExpectedException: 
+		--> It is used in Negative scenario to ignore the exception
+		--> Using expectedException annotation attribute 
+				expectedException: 
+					--> It is an Annotation attribute
+					--> Here we can pass multiple exception
+					--> If mentioned exception is occur test is passed, otherwise test is
+						failed
+					--> We can only use @Test
+					
+9. Parameter:
+		--> It is used to pass the single set of data from xml file 
+		--> Using <parameter> tag to stored a data in xml 
+				<parameter name="name" value="value"></parameter>
+				Each parameter tag having only one value
+		--> We can use <parameter> in two levels
+				1. Suite 
+				2. Test
+		--> Using @Parameters annotation to receive the data in test method 
+		--> In @Parameters we will pass data as String[], Inside we will pass parameter name.
+		
+10. DataProvider: 
+		--> It is used to pass multiple set of data 
+		--> Data are stored as table format using two dimensional Array 
+		--> Data method should mentioned with @DataProvider and give name
+		--> Using dataProvider annotation attribute to receive the data in test method
+		
+11. Parallel Execution:
+		--> It is used to execute test cases parallely
+		--> Using parallel attribute in xml file 
+				We can use parallel attribute two levels:
+						1. Suite 
+						2. Test
+						
+		--> Three Parallel mode is there, 
+				1. methods
+				2. classes
+				3. tests
+					We can choose any one in xml file conversion time 
+
+12. Cross browser Testing: 
+		--> It is used to perform different tasks in different platform
+		--> Example: 
+			
+	<test thread-count="5" name="ChromeTest">
+		<parameter name="browser" value="chrome"></parameter>
+		<classes>
+			<class name="com.crossbrowserpractice.Cross_Browser_Practice">
+				<methods>
+					<include name="adactin"></include>
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->	
+	
+14. IRetry Analyzer: 
+
+		--> It is used to automatically re run the 	failed test cases
+		--> Using IRetryAnalyzer Interface
+		--> Using retryAnayzer annotation attribute to execute MyAnalyzer
+					
+			
+						
+
+
+
+
+
+
+
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+			Alwin@123
+				
+						Valid: 
+						
+								One Uppercase
+								One Lowercase
+								One Special Character
+								One Number
+								No Spaces
+								8 digit above
+								
+								
+						Verify : 
+						
+								alwin@123
+								
+		TakesScreenshot ts = (TakesScreenshot)driver;
+		
+		File get = ts.getScreenshotAs(OutputType.FILE);
+		
+		File f = new File("Image.png");
+		
+		FileHandler.copy(get, f);
+		
+		
